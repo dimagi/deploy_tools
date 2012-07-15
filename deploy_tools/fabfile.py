@@ -102,7 +102,7 @@ from fabric import utils
 from fabric.decorators import hosts
 
 from modules.utils import what_os, try_import
-import fab_settings
+import settings as fab_settings
 import posixpath
 
 
