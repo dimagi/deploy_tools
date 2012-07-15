@@ -102,7 +102,7 @@ from fabric import utils
 from fabric.decorators import hosts
 
 from modules.utils import what_os, try_import
-import settings as deploy_settings
+import fab_settings
 import posixpath
 
 
@@ -111,7 +111,7 @@ def _setup_env():
     #set up env based on settings info
     env.deploy_root = posixpath.dirname(__file__)
     env.home = posixpath.split(env.deploy_root)
-    env.deploy_modules = deploy_settings.MODULES
+    env.deploy_modules = fab_settings.MODULES
     env.show = ['debug']
     _setup_paths()
 
@@ -119,14 +119,14 @@ def production():
     """ use production environment on remote host"""
     env.environment = 'production'
     env.server_name = 'project-production.dimagi.com'
-    env.hosts = deploy_settings.PRODUCTION_HOST
+    env.hosts = fab_settings.PRODUCTION_HOST
     env.deploy_level = 'production'
     _setup_env()
 
 def staging():
     env.environment = 'staging'
     env.server_name = 'project-staging.dimagi.com'
-    env.hosts = deploy_settings.STAGING_HOST
+    env.hosts = fab_settings.STAGING_HOST
     env.deploy_level = 'staging'
     _setup_env()
 
@@ -136,7 +136,7 @@ def _setup_paths():
     in deploying code, populating config templates, etc.
     """
     # using posixpath to ensure unix style slashes. See bug-ticket: http://code.fabfile.org/attachments/61/posixpath.patch
-    env.project_root = deploy_settings.PROJECT_ROOT
+    env.project_root = fab_settings.PROJECT_ROOT
     env.www_root = posixpath.join(env.project_root,'www',env.environment)
     env.log_dir = posixpath.join(env.www_root,'log')
     env.code_root = posixpath.join(env.www_root,'code_root')

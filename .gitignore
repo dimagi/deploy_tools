@@ -1,5 +1,8 @@
 .idea/
+build/
 *.pyc
 docs/_build/*
 apps.txt
 localsettings.py
+deploy_tools.egg-info/
+dist/
